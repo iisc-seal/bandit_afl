@@ -41,10 +41,10 @@ argv = argvType()
 #here the argIndex starts from 2 because we don't need to pass 0)testingAgent.py and 1)path_of_dir_containing_model to main function
 argIndex = 2
 while argIndex < numberOfArguments:
-    argv[argIndex - 2] = sys.argv[argIndex]
+    argv[argIndex - 2] = c_char_p((sys.argv[argIndex]).encode('utf-8'))
     argIndex = argIndex + 1
 argv[argIndex - 2]=None
-argv[0] = 'afl-fuzz'
+argv[0] = c_char_p(('afl-fuzz').encode('utf-8'))
 
 # Calling the main function which setup the fuzzer and does some pre-processing like executing
 # the seed test-cases and setting up the virgin and trace_bits etc. 
@@ -96,7 +96,7 @@ with tf.Session() as sess:
     state_in = graph.get_tensor_by_name("state_in:0")
     weights = tf.trainable_variables()
     sess.run(weights)
-    
+    file.write("iteration, reward")
     testingTimeInMin = (testingHours * 60)     
     testing_start_time = time.time()
     timeSpentInTesting = 0
@@ -126,7 +126,7 @@ with tf.Session() as sess:
                 action = sess.run(op_to_choseAction,feed_dict={state_in:inputArray})
                   
             #Perform the selected action and get the reward and log the reward value 
-            reward = perform_action(action)  
+            reward = perform_action(c_int(action))
             file.write("\n")
             file.write(str(iteration))
             file.write(",")

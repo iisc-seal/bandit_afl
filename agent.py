@@ -40,10 +40,10 @@ argv = argvType()
 
 argIndex = 1
 while argIndex < numberOfArguments:
-    argv[argIndex - 1] = sys.argv[argIndex]
+    argv[argIndex - 1] = c_char_p((sys.argv[argIndex]).encode('utf-8'))
     argIndex = argIndex + 1
 argv[argIndex - 1] = None
-argv[0] = 'afl-fuzz'
+argv[0] = c_char_p(('afl-fuzz').encode('utf-8'))
 
 
 
@@ -138,7 +138,7 @@ with tf.Session() as sess:
     timeSpentInTraining = 0
     start_time = time.time()
     sess.run(init)
-    
+    file.write("iteration, reward")
     #TRAINING PART
     while timeSpentInTraining < trainingTimeInMin:
         if np.random.rand(1) < fuzzingProb:
@@ -167,7 +167,7 @@ with tf.Session() as sess:
                 
         
             #Perform the selected action and get the reward and log the reward value 
-            reward = perform_action(action) 
+            reward = perform_action(c_int(action))
             file.write("\n")
             file.write(str(iteration))
             file.write(",")
