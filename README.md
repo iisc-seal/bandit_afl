@@ -6,6 +6,8 @@
 Greybox Fuzzing As Contextual Bandits Problem:
 This repository contains the code to formulate the energy prediction in greybox fuzzing as contextual bandits problem. We select 128 bytes from the test case and treat it as a state. We predict actions according to a neural network model given the input state, here the action space is the collection of multipliers of the energy value, to be given to the test case. We fuzz the state with the modified energy value. This tool is an extension of [American Fuzzy Lop (AFL)](http://lcamtuf.coredump.cx/afl/)
 
+Technical description of this work is available at [Greybox fuzzing as a contextual bandits problem](https://arxiv.org/abs/1806.03806)
+
 # How do I get set up?
 Follow the instructions given below. A concrete example of fuzzing nm-new binary from the binutils is provided at the end.  
 1)Install [Tensorflow CPU](https://www.tensorflow.org/install/)   
@@ -83,4 +85,3 @@ python testingAgent.py <path-to-binutils-2.26-directory>/afl_train_out/ 4 -i <pa
      
     
 
-Technical description of this work is available at [Greybox fuzzing as a contextual bandits problem](https://arxiv.org/abs/1806.03806)
