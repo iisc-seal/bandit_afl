@@ -80,3 +80,7 @@ NOTE: If you get any warnings related to core_patterns or cpu scaling governor t
 python testingAgent.py <path-to-binutils-2.26-directory>/afl_train_out/ 4 -i <path-to-binutils-2.26-directory>/afl_in/ -o <path-to-binutils-2.26-directory>/afl_test_out/ <path-to-binutils-2.26-directory>/binutils/nm-new -C @@
 ```
 12)All the results can be found in afl_test_out directory.
+     
+    
+
+Technical description of this work is available at [Greybox fuzzing as a contextual bandits problem](https://arxiv.org/abs/1806.03806)
